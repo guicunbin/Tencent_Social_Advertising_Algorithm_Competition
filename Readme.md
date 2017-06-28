@@ -33,3 +33,14 @@ or
 > "sort: 写入失败: 标准输出: 断开的管道"         这个没有关系，可以继续执行
 > the run.sh or run_phase_1.sh will auto download the data,  auto preprocess, auto extract feature, auto run model 
 ##### run.sh 或 run_phase_1.sh 会自动下载数据，自动预处理，自动提取特征，自动跑模型生成submiss.csv, 一气呵成。
+
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+## other solutions    
+###### final 14th  https://github.com/z564808896/Tencent_Social_Ads
+> 贝叶斯平滑　　
+> rank_feature 处理成类别特征
+> 三组合交叉特征
+###### final 23th  https://github.com/BladeCoda/Tencent2017_Final_Coda_Allegro

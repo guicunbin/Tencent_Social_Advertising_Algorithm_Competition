@@ -21,6 +21,7 @@ import re
 from split_data import *
 #### TODO use following feats to test_feats
 #### TODO rank_feats 需要　转化成类别变量
+#### TODO 有几个三特征组合据说效果不错,[('appID','connectionType','positionID'),('appID','haveBaby','gender')]
 cate_feats      = []
 ### train
 dataset2_csv_concat  = './datasets/dataset/dataset2_concat.csv'
