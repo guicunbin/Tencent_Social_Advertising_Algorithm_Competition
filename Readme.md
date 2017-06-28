@@ -1,11 +1,10 @@
-### tencent_2017_contest_final  (决赛)86th   ID   gui式弧线    http://algo.tpai.qq.com (2017腾讯社交广告算法大赛)
+### tencent_2017_contest_final    http://algo.tpai.qq.com (2017腾讯社交广告算法大赛) 
+### (决赛)86th      ID   gui式弧线  
 
 
 
 
 ### dependency
-> lightgbm;     pandas;     numpy;      sklearn;   fire;
-#### if you don't have the above dependency,
 > sudo pip install lightgbm  pandas  numpy  sklearn   fire
 
 
