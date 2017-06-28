@@ -39,8 +39,8 @@ or
 ---------------------------------------------------------------------------------------------
 
 ## other solutions    
-###### final 14th  https://github.com/z564808896/Tencent_Social_Ads
-> 贝叶斯平滑　　
+##### final 14th  https://github.com/z564808896/Tencent_Social_Ads
+> 贝叶斯平滑
 > rank_feature 处理成类别特征
 > 三组合交叉特征
-###### final 23th  https://github.com/BladeCoda/Tencent2017_Final_Coda_Allegro
+##### final 23th  https://github.com/BladeCoda/Tencent2017_Final_Coda_Allegro
