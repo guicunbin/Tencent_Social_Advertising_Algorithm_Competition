@@ -93,56 +93,6 @@ def get_rank_feats_to_csv(mode='dataset1', groupby_feats = ['userID','creativeID
 
 
 
-
-
-def feature_cnt(data_set, feat_set, n_feats=1, before_day=10):
-    for feats in itertools.combinations(base_feats, n_feats):
-        feats=list(feats)
-        suffix      = reduce(lambda f1,f2: f1+'_'+f2,  feats)
-        suffix_day  = '_beforeday_'+str(before_day)
-        ###### make feat_names
-        fset_total_cnt                = suffix + suffix_day + '_fset_total_cnt'
-        ###### this feature just compute 1 time　##########################
-        dset_total_cnt                = suffix + '_dset_total_cnt'
-        ###################################################################
-        total_cnt_dset_in_fset_rate   = suffix + suffix_day + '_total_cnt_d_in_f_rate'
-        fset_label_1_cnt              = suffix + suffix_day + '_fset_label_1_cnt'
-        fset_label_1_cnt_in_total_rate= suffix + suffix_day + '_fset_label_1_cnt_in_total_rate'
-        print ' processing ..... '+suffix
-        ###### for total cnt
-        # for feat_set
-        t  = feat_set[feats]
-        t[fset_total_cnt]=1
-        t  = t.groupby(feats).agg('sum').reset_index().astype('float32')
-        data_set = pd.merge(data_set, t, how='left', on = feats)
-        # for data_set
-        if dset_total_cnt not in data_set.columns:
-            t  = data_set[feats]
-            t[dset_total_cnt]=1
-            t  = t.groupby(feats).agg('sum').reset_index().astype('float32')
-            data_set = pd.merge(data_set, t, how='left', on = feats)
-        data_set[total_cnt_dset_in_fset_rate] = \
-                (data_set[dset_total_cnt] / data_set[fset_total_cnt]).astype('float16')
-        if 'click_day' in feats:
-        ### 点击日当天的　label 我们是不知道的, 只知道当天点击了多少次
-        ### TODO 可以改用点击日之前所有的天的　label 
-            continue
-        ######　下面的这些涉及到 label 那么就只能在feat_set上面提取
-        ### for label 1
-        t = feat_set[feat_set.label==1][feats]
-        t[fset_label_1_cnt] = 1
-        t = t.groupby(feats).agg('sum').reset_index().astype('float32')
-        data_set = pd.merge(data_set, t, how='left', on = feats)
-        data_set[fset_label_1_cnt].fillna(value=0,inplace=True)
-        ### for transfer_rate
-        data_set[fset_label_1_cnt_in_total_rate]=\
-                (data_set[fset_label_1_cnt] / data_set[fset_total_cnt]).astype('float16')
-        ###TODO tranfer_rate 是否需要 fillna -1
-    return data_set
-
-
-
-
 def feature_cnt_v2(data_set_path, feat_set_path, mode = 'train', n_feats=2, before_day=10):
     '''this func will use less Memory, but will use more time
         and this func add some extra feature
@@ -263,53 +213,6 @@ def feature_cnt_v2(data_set_path, feat_set_path, mode = 'train', n_feats=2, befo
 
 
 
-
-def get_data_set123(data_set,   feat_set,  before_day):
-    '''this func just use for data_set_phase1
-    '''
-    t1 = time.time()
-    data_set = feature_cnt(data_set, feat_set, n_feats=1, before_day = before_day)
-    print data_set.shape
-    data_set = feature_cnt(data_set, feat_set, n_feats=2, before_day = before_day)
-    print data_set.shape
-    print '************ this step run time ',time.time() - t1
-    return data_set
-
-
-
-def main():
-    #### train:  data_set1   27   feat_set1     17->26
-    #### valid   data_set2   28   feat_set2     18->27  
-    #### test    data_set3   31   feat_set3     21->30 
-    #### 最后在test的时候可以将df_train = pd.concat([df_train,df_valid],axis=0)
-
-    #### train:  data_set1   27   feat_set1     17->26
-    #data_set = pd.read_csv(data_dir+'f_train_ad_user_position_appCategories_appActions_appInstalled.csv', dtype='float32')
-    #data_set = data_set[data_set.click_day==27]
-    #feat_set = pd.read_csv(data_dir+'f_train_ad_user_position_appCategories_appActions_appInstalled.csv', dtype='float32')
-    #feat_set = feat_set[(feat_set.click_day>=17)&(feat_set.click_day<=26)]
-    #data_set = get_data_set123(data_set,feat_set, before_day=9)
-    #data_set.to_csv(data_dir+'data_set1.csv',index=False)
-
-    #### valid   data_set2   28   feat_set2     18->27  
-    #data_set = pd.read_csv(data_dir+'f_train_ad_user_position_appCategories_appActions_appInstalled.csv', dtype='float32')
-    #data_set = data_set[data_set.click_day==28]
-    #feat_set = pd.read_csv(data_dir+'f_train_ad_user_position_appCategories_appActions_appInstalled.csv', dtype='float32')
-    #feat_set = feat_set[(feat_set.click_day>=18)&(feat_set.click_day<=27)]
-    #data_set = get_data_set123(data_set,feat_set,before_day=9)
-    #data_set.to_csv(data_dir+'data_set2.csv',index=False)
-
-    ##### test    data_set3   31   feat_set3     21->30 
-    data_set = pd.read_csv(data_dir+'f_test_ad_user_position_appCategories_appActions_appInstalled.csv', dtype='float32')
-    data_set = data_set[data_set.click_day==31]
-    feat_set = pd.read_csv(data_dir+'f_train_ad_user_position_appCategories_appActions_appInstalled.csv', dtype='float32')
-    feat_set = feat_set[(feat_set.click_day>=21)&(feat_set.click_day<=30)]
-    data_set = get_data_set123(data_set,feat_set,before_day=9)
-    data_set.to_csv(data_dir+'data_set3.csv',index=False)
-
-
-
-
 def use_feature_cnt_v2(mode):
     if mode == 'train':
         ##### train:  data_set1   27   feat_set1     17->26
@@ -326,7 +229,6 @@ def use_feature_cnt_v2(mode):
 
 
 
-
 def main_v2():
     '''less Memory but more time
     '''
@@ -339,8 +241,6 @@ def main_v2():
     modes = ['train', 'valid','test', 'extra_1']
 
     map(use_feature_cnt_v2,   modes[:])
-
-
 
 
 
