@@ -20,6 +20,7 @@ import copy
 import re
 from split_data import *
 #### TODO use following feats to test_feats
+#### TODO rank_feats 需要　转化成类别变量
 cate_feats      = []
 ### train
 dataset2_csv_concat  = './datasets/dataset/dataset2_concat.csv'
@@ -140,6 +141,8 @@ def get_concat_data(label_csv, label_col, other_csvs, is_rate, important_feats):
             X[feat_cols] = scale(X[feat_cols]).astype('float16')
             X.to_csv(save_file, index=False, chunksize = 50000)
     print X.shape
+    # TODO cate_feats = [f for f in X.columns if 'click' in f] 
+    ## 据说这一步可以带来 3 个千分点的提升,因为rank_feats 实际上是类别变量
     X,      = change_to_category([X], cate_feats)
     y       = X[label_col].values
     X       = X[feat_cols]
