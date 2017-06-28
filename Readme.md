@@ -31,3 +31,5 @@ or
 
 ## notice 
 > "sort: 写入失败: 标准输出: 断开的管道"         这个没有关系，可以继续执行
+> the run.sh or run_phase_1.sh will auto download the data,  auto preprocess, auto extract feature, auto run model 
+##### run.sh 或者　run_phase_1.sh 会自动下载初赛数据和决赛数据，自动预处理，自动提取特征，自动跑模型生成submiss.csv
