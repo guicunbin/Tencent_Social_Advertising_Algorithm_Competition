@@ -1,0 +1,27 @@
+
+
+### test.csv
+> instanceID,   label,      clickTime,  creativeID,     userID,　   positionID,    connectionType,     telecomsOperator
+> 唯一标识,     待预测标签，点击时间    广告素材ID,     用户ID，　  广告位ID，       联网方式，          当前网络的运营商
+### train.csv
+> label,    clickTime,  conversionTime,     creativeID,     userID,     positionID,     connectionType,     telecomsOperator
+>　标签，　　点击时间， 　转化时间，　      广告素材 ID,    用户 ID,    广告位 ID,      联网类型，          当前网络所在运营商
+### ad.csv
+> creativeID,   adID,       camgaignID,     advertiserID,   appID,      appPlatform 
+> 广告素材ID,   广告ID,     推广计划ID,     广告主ID,       App ID,     App所在平台(Android / iOS)
+### user.csv
+> userID,       age,            gender,         education,      marriageStatus,     haveBaby,       hometown,       residence
+> 用户ID,   　用户年龄,         性别,           教育层次，      婚姻状况,           育儿状态，      家乡,           常住地
+### position.csv
+> positionID,   sitesetID,      positionType
+> 广告位 ID,    站点集合ID,     广告位类型
+### app_categories.csv
+> appID,        appCategory
+> App ID,       App分类
+### user_app_actions.csv
+>   userID,     installTime,    appID
+>   用户ID,     安装时间,       App ID
+### user_installedapps.csv
+>   userID,     appID
+>   用户ID,     该用户已经安装的App ID
+
