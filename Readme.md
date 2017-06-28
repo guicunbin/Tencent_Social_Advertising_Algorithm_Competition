@@ -1,5 +1,6 @@
 ### tencent_2017_contest_final    http://algo.tpai.qq.com (2017腾讯社交广告算法大赛) 
-### (决赛)86th      ID   gui式弧线  
+### (决赛)86th      
+###  ID  gui式弧线  
 
 
 
