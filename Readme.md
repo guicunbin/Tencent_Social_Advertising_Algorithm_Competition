@@ -31,7 +31,7 @@ or
 
 ## notice 
 ##### the run.sh or run_phase_1.sh will auto download the data,  auto preprocess, auto extract feature, auto run model 
-##### run.sh 或 run_phase_1.sh 会自动下载数据，自动预处理，自动提取特征，自动跑模型生成submiss.csv, 一气呵成。
+##### run.sh 或 run_phase_1.sh 会自动下载数据，自动预处理，自动提取特征，自动跑模型生成submiss.csv.
 
 
 ---------------------------------------------------------------------------------------------
