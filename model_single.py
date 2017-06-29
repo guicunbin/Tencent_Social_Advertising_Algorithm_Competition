@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-baseline 2: ad.csv (creativeID/adID/camgaignID/advertiserID/appID/appPlatform) + lr
-"""
 #####TODO   lr use onehot features to get a output proba [n_samples,1] 
 #####       use as a strongest feature to feed in lgb with other count features
 #####TODO    use lr and lgb results merge
