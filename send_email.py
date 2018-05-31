@@ -33,4 +33,4 @@ def send_email(context,subject):
 
 
 if __name__=='__main__':
-    fire.Fire(sendmail)
+    fire.Fire(send_email)
